@@ -22,18 +22,19 @@ for kk = 1:nn;
 % Iref(kk) = integral(@(x) exp(1i*g(x)*omega).*f(x),...
 %     a,b,'RelTol',1e-15,'AbsTol',1e-15);
 % Iref(kk) = sqrt(pi)*sqrt(1/omega)*exp(-delta^2*omega/4);
-Iref(kk) = sqrt(pi/(d-1i*A*omega))*exp(-B^2/4*omega^2/(d-1i*A*omega) +...
-    1i*C*omega);            % exact solution
+    Iref(kk) = sqrt(pi/(d-1i*A*omega))*exp(-B^2/4*omega^2/(d-1i*A*omega) +1i*C*omega);            % exact solution
 
 % x = a:0.001:b;
 % plot(x,real(exp(1i*g(x)*omega)),'o-',x,imag(exp(1i*g(x)*omega)),'*-')
 % compare to the simpson's rule
 % Iref2 = trap(@(x) exp(1i*g(x)*omega).*f(x),a,b,tol);
-fel(kk) = abs((Iref(kk)-I(kk))/Iref(kk));
-fel2(kk) = abs((Iref(kk)-I2(kk))/Iref(kk));
-% disp(fel)
+    fel(kk) = abs((Iref(kk)-I(kk))/Iref(kk));
+    fel2(kk) = abs((Iref(kk)-I2(kk))/Iref(kk));
 end
+
 epsd = 1./omegadata;
+
+% PLOT
 figure
 loglog(epsd,abs(I),'o-',epsd,abs(Iref),'*-',...
     epsd,abs(I2),'s-')
